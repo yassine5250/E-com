@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.23.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1716565724364-1" author="yassinebelhoula">
+        <createTable tableName="addresses">
+            <column name="address_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_addresses"/>
+            </column>
+            <column name="street" type="VARCHAR(255)"/>
+            <column name="building_name" type="VARCHAR(255)"/>
+            <column name="city" type="VARCHAR(255)"/>
+            <column name="state" type="VARCHAR(255)"/>
+            <column name="country" type="VARCHAR(255)"/>
+            <column name="pincode" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-2" author="yassinebelhoula">
+        <createTable tableName="cart_items">
+            <column name="cart_item_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_cart_items"/>
+            </column>
+            <column name="cart_id" type="BIGINT"/>
+            <column name="product_id" type="BIGINT"/>
+            <column name="quantity" type="INT"/>
+            <column name="discount" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="product_price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-3" author="yassinebelhoula">
+        <createTable tableName="carts">
+            <column name="cart_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_carts"/>
+            </column>
+            <column name="user_id" type="BIGINT"/>
+            <column name="total_price" type="DOUBLE"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-4" author="yassinebelhoula">
+        <createTable tableName="categories">
+            <column name="category_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_categories"/>
+            </column>
+            <column name="category_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-5" author="yassinebelhoula">
+        <createTable tableName="order_items">
+            <column name="order_item_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_order_items"/>
+            </column>
+            <column name="product_id" type="BIGINT"/>
+            <column name="order_id" type="BIGINT"/>
+            <column name="quantity" type="INT"/>
+            <column name="discount" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ordered_product_price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-6" author="yassinebelhoula">
+        <createTable tableName="orders">
+            <column name="order_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_orders"/>
+            </column>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="order_date" type="DATE"/>
+            <column name="payment_id" type="BIGINT"/>
+            <column name="total_amount" type="DOUBLE"/>
+            <column name="order_status" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-7" author="yassinebelhoula">
+        <createTable tableName="payments">
+            <column name="payment_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_payments"/>
+            </column>
+            <column name="payment_method" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-8" author="yassinebelhoula">
+        <createTable tableName="products">
+            <column name="product_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_products"/>
+            </column>
+            <column name="product_name" type="VARCHAR(255)"/>
+            <column name="image" type="VARCHAR(255)"/>
+            <column name="description" type="VARCHAR(255)"/>
+            <column name="quantity" type="INT"/>
+            <column name="price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="discount" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="special_price" type="DOUBLE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="category_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-9" author="yassinebelhoula">
+        <createTable tableName="roles">
+            <column name="role_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_roles"/>
+            </column>
+            <column name="role_name" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-10" author="yassinebelhoula">
+        <createTable tableName="user_address">
+            <column name="address_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-11" author="yassinebelhoula">
+        <createTable tableName="user_role">
+            <column name="role_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_role"/>
+            </column>
+            <column name="user_id" type="BIGINT">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="pk_user_role"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-12" author="yassinebelhoula">
+        <createTable tableName="users">
+            <column name="user_id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="pk_users"/>
+            </column>
+            <column name="first_name" type="VARCHAR(20)"/>
+            <column name="last_name" type="VARCHAR(20)"/>
+            <column name="mobile_number" type="VARCHAR(10)"/>
+            <column name="email" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="1716565724364-13" author="yassinebelhoula">
+        <addUniqueConstraint columnNames="user_id" constraintName="uc_carts_user" tableName="carts"/>
+    </changeSet>
+    <changeSet id="1716565724364-14" author="yassinebelhoula">
+        <addUniqueConstraint columnNames="payment_id" constraintName="uc_orders_payment" tableName="orders"/>
+    </changeSet>
+    <changeSet id="1716565724364-15" author="yassinebelhoula">
+        <addUniqueConstraint columnNames="email" constraintName="uc_users_email" tableName="users"/>
+    </changeSet>
+    <changeSet id="1716565724364-16" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="carts" constraintName="FK_CARTS_ON_USER"
+                                 referencedColumnNames="user_id" referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="1716565724364-17" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="cart_id" baseTableName="cart_items"
+                                 constraintName="FK_CART_ITEMS_ON_CART" referencedColumnNames="cart_id"
+                                 referencedTableName="carts"/>
+    </changeSet>
+    <changeSet id="1716565724364-18" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="cart_items"
+                                 constraintName="FK_CART_ITEMS_ON_PRODUCT" referencedColumnNames="product_id"
+                                 referencedTableName="products"/>
+    </changeSet>
+    <changeSet id="1716565724364-19" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="payment_id" baseTableName="orders"
+                                 constraintName="FK_ORDERS_ON_PAYMENT" referencedColumnNames="payment_id"
+                                 referencedTableName="payments"/>
+    </changeSet>
+    <changeSet id="1716565724364-20" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="order_id" baseTableName="order_items"
+                                 constraintName="FK_ORDER_ITEMS_ON_ORDER" referencedColumnNames="order_id"
+                                 referencedTableName="orders"/>
+    </changeSet>
+    <changeSet id="1716565724364-21" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="product_id" baseTableName="order_items"
+                                 constraintName="FK_ORDER_ITEMS_ON_PRODUCT" referencedColumnNames="product_id"
+                                 referencedTableName="products"/>
+    </changeSet>
+    <changeSet id="1716565724364-22" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="category_id" baseTableName="products"
+                                 constraintName="FK_PRODUCTS_ON_CATEGORY" referencedColumnNames="category_id"
+                                 referencedTableName="categories"/>
+    </changeSet>
+    <changeSet id="1716565724364-23" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="address_id" baseTableName="user_address"
+                                 constraintName="fk_useadd_on_address" referencedColumnNames="address_id"
+                                 referencedTableName="addresses"/>
+    </changeSet>
+    <changeSet id="1716565724364-24" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_address"
+                                 constraintName="fk_useadd_on_user" referencedColumnNames="user_id"
+                                 referencedTableName="users"/>
+    </changeSet>
+    <changeSet id="1716565724364-25" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="role_id" baseTableName="user_role"
+                                 constraintName="fk_user_role_on_role" referencedColumnNames="role_id"
+                                 referencedTableName="roles"/>
+    </changeSet>
+    <changeSet id="1716565724364-26" author="yassinebelhoula">
+        <addForeignKeyConstraint baseColumnNames="user_id" baseTableName="user_role"
+                                 constraintName="fk_user_role_on_user" referencedColumnNames="user_id"
+                                 referencedTableName="users"/>
+    </changeSet>
+
+</databaseChangeLog>
